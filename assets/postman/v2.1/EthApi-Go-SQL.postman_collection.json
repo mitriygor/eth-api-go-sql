@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "f164d8a9-46c4-4cc4-9e3d-ac7ffcd7e466",
+		"name": "EthApi-Go-SQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7700049"
+	},
+	"item": [
+		{
+			"name": "EthAPI :: Block By Number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{version}}/eth-blocks/0x118ed01",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{version}}",
+						"eth-blocks",
+						"0x118ed01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EthAPI :: Latest Blocks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{version}}/eth-blocks/latest",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{version}}",
+						"eth-blocks",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EthAPI :: Transaction By Hash",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{version}}/eth-transactions/0x6813b6cea801bc68080b7dc843a8b46b55aa34cdb8679e9efb2cfd098fe02202",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{version}}",
+						"eth-transactions",
+						"0x6813b6cea801bc68080b7dc843a8b46b55aa34cdb8679e9efb2cfd098fe02202"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EthAPI :: Transactions By Address",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{version}}/eth-transactions/address/0xae2fc483527b8ef99eb5d9b44875f005ba1fae13",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{version}}",
+						"eth-transactions",
+						"address",
+						"0xae2fc483527b8ef99eb5d9b44875f005ba1fae13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API :: Latest Block Number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.etherscan.io/api?module=proxy&action=eth_blockNumber&apikey=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+					"protocol": "https",
+					"host": [
+						"api",
+						"etherscan",
+						"io"
+					],
+					"path": [
+						"api"
+					],
+					"query": [
+						{
+							"key": "module",
+							"value": "proxy"
+						},
+						{
+							"key": "action",
+							"value": "eth_blockNumber"
+						},
+						{
+							"key": "apikey",
+							"value": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API :: Block By Number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.etherscan.io/api?module=proxy&action=eth_getBlockByNumber&tag=0x118c35a&boolean=true&apikey=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+					"protocol": "https",
+					"host": [
+						"api",
+						"etherscan",
+						"io"
+					],
+					"path": [
+						"api"
+					],
+					"query": [
+						{
+							"key": "module",
+							"value": "proxy"
+						},
+						{
+							"key": "action",
+							"value": "eth_getBlockByNumber"
+						},
+						{
+							"key": "tag",
+							"value": "0x118c35a"
+						},
+						{
+							"key": "boolean",
+							"value": "true"
+						},
+						{
+							"key": "apikey",
+							"value": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API :: Transaction By Hash",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.etherscan.io/api?module=proxy&action=eth_getTransactionByHash&txhash=0x6813b6cea801bc68080b7dc843a8b46b55aa34cdb8679e9efb2cfd098fe02202&boolean=true&apikey=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+					"protocol": "https",
+					"host": [
+						"api",
+						"etherscan",
+						"io"
+					],
+					"path": [
+						"api"
+					],
+					"query": [
+						{
+							"key": "module",
+							"value": "proxy"
+						},
+						{
+							"key": "action",
+							"value": "eth_getTransactionByHash"
+						},
+						{
+							"key": "txhash",
+							"value": "0x6813b6cea801bc68080b7dc843a8b46b55aa34cdb8679e9efb2cfd098fe02202"
+						},
+						{
+							"key": "boolean",
+							"value": "true"
+						},
+						{
+							"key": "apikey",
+							"value": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "version",
+			"value": "v1",
+			"type": "string"
+		}
+	]
+}

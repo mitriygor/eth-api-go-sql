@@ -1,0 +1,79 @@
+<html>
+<head>
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
+    <style>
+        button {
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4b9ed8;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #3a7cad;
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body class="bg-[#13183d] min-h-screen flex  justify-center text-lg text-white">
+<div class="flex gap-16 mt-30">
+    <div>
+        <form onsubmit="submitForm(event, 'eth-blocks', 'result1')" class="flex items-center gap-4">
+            <input type="text" id="param1" required class="p-3 rounded-lg text-2xl w-[600px]">
+            <button type="submit" class="p-3 rounded-lg bg-blue-500 text-white text-2xl cursor-pointer">Send</button>
+        </form>
+        <div id="result1" class="mt-2 w-[800px] max-h-[500px] overflow-y-auto bg-[#1a213a] font-mono p-2"></div>
+    </div>
+
+    <div>
+        <form onsubmit="submitForm(event, 'eth-transactions', 'result2')" class="flex items-center gap-4">
+            <input type="text" id="param2" required class="p-3 rounded-lg text-2xl  w-[600px]">
+            <button type="submit" class="p-3 rounded-lg bg-blue-500 text-white text-2xl cursor-pointer">Send</button>
+        </form>
+        <div id="result2" class="mt-2 w-[800px] max-h-[500px] overflow-y-auto bg-[#1a213a] font-mono p-2"></div>
+    </div>
+</div>
+
+<script>
+    function submitForm(event, endpoint, resultId) {
+        event.preventDefault();
+        const form = event.target;
+        const param = form.querySelector('input[type="text"]').value;
+        const resultDiv = document.getElementById(resultId);
+        resultDiv.classList.add('bg-[#1a213a]');
+        const url = `/v1/${endpoint}/${encodeURIComponent(param)}`;
+        htmx.ajax('GET', url, {
+            target: resultDiv,
+        });
+    }
+
+    htmx.on('htmx:responseError', (event) => {
+        const responseText = event.detail.xhr.responseText;
+        const resultDiv = document.getElementById(event.detail.target.id);
+        try {
+            const jsonResponse = JSON.parse(responseText);
+            const formattedJson = JSON.stringify(jsonResponse, null, 2);
+            resultDiv.innerHTML = `<pre>${formattedJson}</pre>`;
+        } catch (e) {
+            resultDiv.innerHTML = `<pre>${responseText}</pre>`;
+        }
+    });
+
+    htmx.on('htmx:afterOnLoad', (event) => {
+        const responseText = event.detail.xhr.responseText;
+        const resultDiv = document.getElementById(event.detail.target.id);
+        try {
+            const jsonResponse = JSON.parse(responseText);
+            const formattedJson = JSON.stringify(jsonResponse, null, 2);
+            resultDiv.innerHTML = `<pre>${formattedJson}</pre>`;
+        } catch (e) {
+            resultDiv.innerHTML = `<pre>${responseText}</pre>`;
+        }
+    });
+</script>
+</body>
+</html>
